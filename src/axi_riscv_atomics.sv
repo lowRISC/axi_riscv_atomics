@@ -141,7 +141,7 @@ module axi_riscv_atomics #(
     // address ranges, it would not make sense to expose the address range as a parameter of this
     // module.
     localparam longint ADDR_BEGIN  = '0;
-    localparam longint ADDR_END    = {AXI_ADDR_WIDTH{1'b1}};
+    localparam longint  ADDR_END    = 2**64-1;
 
     logic [AXI_ADDR_WIDTH-1:0]   int_axi_aw_addr;
     logic [2:0]                  int_axi_aw_prot;

@@ -32,7 +32,7 @@
 module axi_riscv_lrsc #(
     /// Exclusively-accessible address range (closed interval from ADDR_BEGIN to ADDR_END)
     parameter longint ADDR_BEGIN = 0,
-    parameter longint ADDR_END = 0,
+    parameter longint ADDR_END = 2**64-1,
     /// AXI Parameters
     parameter int AXI_ADDR_WIDTH = 64,
     parameter int AXI_DATA_WIDTH = 64,
@@ -492,6 +492,7 @@ module axi_riscv_lrsc #(
 
     // Validate parameters.
 // pragma translate_off
+`ifndef VCS
 `ifndef VERILATOR
     initial begin: validate_params
         assert (ADDR_END > ADDR_BEGIN)
@@ -503,6 +504,7 @@ module axi_riscv_lrsc #(
         assert (AXI_ID_WIDTH > 0)
             else $fatal(1, "AXI_ID_WIDTH must be greater than 0!");
     end
+`endif
 `endif
 // pragma translate_on
 

@@ -983,6 +983,7 @@ module axi_riscv_amos #(
 
     // Validate parameters.
 // pragma translate_off
+`ifndef VCS
 `ifndef VERILATOR
     initial begin: validate_params
         assert (AXI_ADDR_WIDTH > 0)
@@ -998,6 +999,7 @@ module axi_riscv_amos #(
         assert (RISCV_WORD_WIDTH <= AXI_DATA_WIDTH)
             else $fatal(1, "RISCV_WORD_WIDTH must not be greater than AXI_DATA_WIDTH!");
     end
+`endif
 `endif
 // pragma translate_on
 
