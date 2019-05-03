@@ -11,7 +11,7 @@
 
 // AXI RISC-V Atomic Operations (AMOs) ALU
 module axi_riscv_amos_alu # (
-    parameter int unsigned DATA_WIDTH = 0
+    parameter int DATA_WIDTH = 8
 ) (
     input  logic [5:0]              amo_op_i,
     input  logic [DATA_WIDTH-1:0]   amo_operand_a_i,

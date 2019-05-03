@@ -11,8 +11,8 @@
 
 // AXI Reservation Table
 module axi_res_tbl #(
-    parameter int unsigned AXI_ADDR_WIDTH = 0,
-    parameter int unsigned AXI_ID_WIDTH = 0
+    parameter int AXI_ADDR_WIDTH = 64,
+    parameter int AXI_ID_WIDTH = 5
 ) (
     input  logic                        clk_i,
     input  logic                        rst_ni,

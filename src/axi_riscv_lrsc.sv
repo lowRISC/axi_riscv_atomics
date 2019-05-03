@@ -31,15 +31,15 @@
 
 module axi_riscv_lrsc #(
     /// Exclusively-accessible address range (closed interval from ADDR_BEGIN to ADDR_END)
-    parameter longint unsigned ADDR_BEGIN = 0,
-    parameter longint unsigned ADDR_END = 0,
+    parameter longint ADDR_BEGIN = 0,
+    parameter longint ADDR_END = 0,
     /// AXI Parameters
-    parameter int unsigned AXI_ADDR_WIDTH = 0,
-    parameter int unsigned AXI_DATA_WIDTH = 0,
-    parameter int unsigned AXI_ID_WIDTH = 0,
-    parameter int unsigned AXI_USER_WIDTH = 0,
+    parameter int AXI_ADDR_WIDTH = 64,
+    parameter int AXI_DATA_WIDTH = 64,
+    parameter int AXI_ID_WIDTH = 5,
+    parameter int AXI_USER_WIDTH = 1,
     /// Derived Parameters (do NOT change manually!)
-    localparam int unsigned AXI_STRB_WIDTH = AXI_DATA_WIDTH / 8
+    localparam int AXI_STRB_WIDTH = AXI_DATA_WIDTH / 8
 ) (
     input logic                         clk_i,
     input logic                         rst_ni,

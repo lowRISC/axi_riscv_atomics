@@ -22,18 +22,18 @@
 
 module axi_riscv_amos #(
     // AXI Parameters
-    parameter int unsigned AXI_ADDR_WIDTH       = 0,
-    parameter int unsigned AXI_DATA_WIDTH       = 0,
-    parameter int unsigned AXI_ID_WIDTH         = 0,
-    parameter int unsigned AXI_USER_WIDTH       = 0,
+    parameter int AXI_ADDR_WIDTH       = 64,
+    parameter int AXI_DATA_WIDTH       = 64,
+    parameter int AXI_ID_WIDTH         = 5,
+    parameter int AXI_USER_WIDTH       = 1,
     // Maximum number of AXI write transactions outstanding at the same time
-    parameter int unsigned AXI_MAX_WRITE_TXNS   = 0,
+    parameter int AXI_MAX_WRITE_TXNS   = 0,
     // Word width of the widest RISC-V processor that can issue requests to this module.
     // 32 for RV32; 64 for RV64, where both 32-bit (.W suffix) and 64-bit (.D suffix) AMOs are
     // supported if `aw_strb` is set correctly.
-    parameter int unsigned RISCV_WORD_WIDTH     = 0,
+    parameter int RISCV_WORD_WIDTH     = 64,
     /// Derived Parameters (do NOT change manually!)
-    localparam int unsigned AXI_STRB_WIDTH      = AXI_DATA_WIDTH / 8
+    localparam int AXI_STRB_WIDTH      = AXI_DATA_WIDTH / 8
 ) (
     input  logic                        clk_i,
     input  logic                        rst_ni,
@@ -141,8 +141,8 @@ module axi_riscv_amos #(
     input  logic                        mst_b_valid_i
 );
 
-    localparam int unsigned OUTSTND_BURSTS_WIDTH = $clog2(AXI_MAX_WRITE_TXNS+1);
-    localparam int unsigned AXI_ALU_RATIO        = AXI_DATA_WIDTH/RISCV_WORD_WIDTH;
+    localparam int OUTSTND_BURSTS_WIDTH = $clog2(AXI_MAX_WRITE_TXNS+1);
+    localparam int AXI_ALU_RATIO        = AXI_DATA_WIDTH/RISCV_WORD_WIDTH;
 
     // State types
     typedef enum logic [1:0] { FEEDTHROUGH_AW, WAIT_RESULT_AW, SEND_AW } aw_state_t;
